@@ -1,11 +1,8 @@
-from masks import get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
-from masks import get_mask_account
-
-
-def mask_account_card (coded_accounts: str) -> str:
-    """ Принимает один аргумент, возращает строку с замаскированным номером"""
+def mask_account_card(coded_accounts: str) -> str:
+    """Принимает один аргумент, возращает строку с замаскированным номером"""
 
     decoded = coded_accounts.split()
     only_numbers = decoded[-1]
@@ -18,5 +15,6 @@ def mask_account_card (coded_accounts: str) -> str:
     return f"{only_name} {masked_numbers}"
 
 
-def get_date (dates: str) -> str:
+def get_date(dates: str) -> str:
+    """Принимает на вход строку с датой, и возвращает строку с датой в формате 'ДД.ММ.ГГГГ' """
     return dates[8:10] + "." + dates[5:7] + "." + dates[:4]
