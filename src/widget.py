@@ -1,4 +1,5 @@
-from src.masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account
+from src.masks import get_mask_card_number
 
 
 def mask_account_card(coded_accounts: str) -> str:
@@ -7,12 +8,17 @@ def mask_account_card(coded_accounts: str) -> str:
     decoded = coded_accounts.split()
     only_numbers = decoded[-1]
     only_name = decoded[:-1]
+    final_reveal = ""
 
-    if "cчет" in coded_accounts.lower():
+    if "Счет" in coded_accounts.lower():
         masked_numbers = get_mask_account(only_numbers)
+        final_reveal += only_numbers
+        final_reveal += masked_numbers
     else:
-        masked_numbers = get_mask_card_number(only_numbers)
-    return f"{only_name} {masked_numbers}"
+        masked_numbers1 = get_mask_card_number(only_numbers)
+        final_reveal += only_name
+        final_reveal += masked_numbers1
+    return final_reveal
 
 
 def get_date(dates: str) -> str:
