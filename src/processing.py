@@ -1,17 +1,19 @@
-def filter_by_state (data, state: str ) -> list [str]:
-    """ Принимает список словарей, возвращает новый список словарей у которых ключ соответствует указанному значению"""
+from typing import List, Dict, Any
 
-    sorted_list = []
+def filter_by_state (dict_list: List [str, Any], state: str = "EXECUTED" ) -> List[Dict[str, Any]]:
+    """ Функция филтрует список словоря по ключу с указонным значением"""
 
-    for item in data:
-        if item [state] == 'EXECUTED':
-            sorted_list.append(item)
-    return sorted_list
+    filtered_list = []
+    for item in dict_list:
+        if item.get("state") == state:
+            filtered_list.append(item)
+
+    return filtered_list
 
 
-def sort_by_date (date: list[str]) -> list:
-    """" Которая принимает список словарей и сортирует по убывание """
 
-    descending_dates = sorted (date, reverse=True)
-
-    return descending_dates
+def sort_by_date(data: List[Dict], descending: bool = True) -> List[Dict]:
+    """ Принимает список словарей и сортирует их по ключу 'date'.
+    По умолчанию сортировка по убыванию (descending=True).
+    """
+    return sorted(data, key=lambda x: x['date'], reverse=descending)
