@@ -3,8 +3,8 @@ import pytest
 from src.widget import mask_account_card, get_date
 
 @pytest.mark.parametrize("coded_accounts, results", [
-    ("Maestro 1596837868705199, Maestro 1596 83** **** 5199"),
-    ("Счет 64686473678894779589, Счет **9589"),
+    ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
+    ("Счет 64686473678894779589", "Счет **9589"),
 ])
 def test_mask_account_card (coded_accounts, results):
     assert mask_account_card(coded_accounts) == results

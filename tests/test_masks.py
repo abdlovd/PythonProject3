@@ -5,8 +5,9 @@ import pytest
 from src.masks import get_mask_card_number, get_mask_account
 
 @pytest.mark.parametrize("number_card, result", [
-    ("123456789987654321", "1234 56** **** 654321"),
-    ("123456789987654321785784", "1234 56** **** 654321")
+    ("12345678998765432112345", "Номер должен состоять из 16 цифр"),
+    ("12345678998в6543", "Только Цифры"),
+    ("1234567899886543", "1234 56** **** 6543")
 ])
 def test_get_mask_card_number(number_card: str, result: str) -> None:
     assert get_mask_card_number (number_card) == result
