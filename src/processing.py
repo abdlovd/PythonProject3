@@ -1,6 +1,4 @@
-from typing import List, Dict, Any
-
-def filter_by_state (dict_list: List [str, Any], state: str = "EXECUTED" ) -> List[Dict[str, Any]]:
+def filter_by_state (dict_list: list [dict], state: str = "EXECUTED" ) -> list[dict]:
     """ Функция филтрует список словоря по ключу с указонным значением"""
 
     filtered_list = []
@@ -12,7 +10,7 @@ def filter_by_state (dict_list: List [str, Any], state: str = "EXECUTED" ) -> Li
 
 
 
-def sort_by_date(data: List[Dict], descending: bool = True) -> List[Dict]:
+def sort_by_date(data: list[dict], descending: bool = True) -> list[dict]:
     """ Принимает список словарей и сортирует их по ключу 'date'.
     По умолчанию сортировка по убыванию (descending=True).
     """
