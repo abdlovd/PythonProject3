@@ -1,5 +1,4 @@
-from turtledemo.penrose import start
-from typing import Iterator, Generator
+from typing import Generator, Iterator
 
 
 def filter_by_currency(transactions: list[dict], currency: str) -> Iterator:
@@ -26,7 +25,7 @@ def card_number_generator (start: int, stop: int) -> Generator:
 
 if __name__ == "__main__":
     card_number_gen = card_number_generator(start=1000, stop=1067)
-    print(next(card_number_gen))
-    print(next(card_number_gen))
-    print(next(card_number_gen))
-    print(next(card_number_gen))
+    print (next(card_number_gen))
+    print (next(card_number_gen))
+    print (next(card_number_gen))
+    print (next(card_number_gen))

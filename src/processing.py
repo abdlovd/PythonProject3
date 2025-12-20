@@ -1,4 +1,4 @@
-def filter_by_state (dict_list: list [dict], state: str = "EXECUTED" ) -> list[dict]:
+def filter_by_state (dict_list: list [dict], state: str = "EXECUTED") -> list[dict]:
     """ Функция филтрует список словоря по ключу с указонным значением"""
 
     filtered_list = []
