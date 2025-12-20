@@ -16,8 +16,5 @@ def mask_account_card(coded_accounts: str) -> str:
 
 
 def get_date(dates: str) -> str:
-    """Принимает на вход строку с датой, и возвращает строку с датой в формате 'ДД.ММ.ГГГГ' """
+    """Принимает на вход строку с датой, и возвращает строку с датой в формате 'ДД.ММ.ГГГГ'"""
     return dates[8:10] + "." + dates[5:7] + "." + dates[:4]
-
-if __name__ == '__main__':
-    print(mask_account_card("Maestro 1596837868705199"))
