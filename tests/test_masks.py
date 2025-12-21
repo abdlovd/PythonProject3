@@ -2,7 +2,8 @@ from unittest import result
 
 import pytest
 
-from src.masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_account, get_mask_card_number
+
 
 @pytest.mark.parametrize("number_card, result", [
     ("12345678998765432112345", "Номер должен состоять из 16 цифр"),
