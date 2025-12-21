@@ -22,10 +22,3 @@ def card_number_generator (start: int, stop: int) -> Generator:
     for i in range(start, stop+1):
         number = f"{i:016d}"
         yield number[:4] + " " + number[4:8] + " " + number[8:12] + " " + number[12:]
-
-if __name__ == "__main__":
-    card_number_gen = card_number_generator(start=1000, stop=1067)
-    print (next(card_number_gen))
-    print (next(card_number_gen))
-    print (next(card_number_gen))
-    print (next(card_number_gen))
