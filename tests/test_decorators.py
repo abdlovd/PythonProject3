@@ -1,23 +1,30 @@
 from src.decorators import log
 
+
 @log()
 def plus(a, b):
     return a + b
 
+
 def test_plus(capsys):
     plus(1, 2)
     captured = capsys.readouterr()
-    assert captured.out == 'Функция выполнена успешно plus, 3\n'
+    assert captured.out == "Функция выполнена успешно plus, 3\n"
+
 
 def test_exception(capsys):
     plus(1, "apple")
     captured = capsys.readouterr()
-    assert captured.out == "Ошибка: unsupported operand type(s) for +: 'int' and 'str', plus. Аргументы: (1, 'apple') {}\n"
+    assert (
+        captured.out
+        == "Ошибка: unsupported operand type(s) for +: 'int' and 'str', plus. Аргументы: (1, 'apple') {}\n"
+    )
 
 
 @log("log.txt")
 def plus_(a, b):
     return a + b
+
 
 def test_plus_():
     plus_(1, 2)

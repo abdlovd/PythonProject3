@@ -2,6 +2,7 @@ import json
 
 from src.external_api import api_information
 
+
 def open_json(way_to_open):
     try:
         with open(way_to_open, "r", encoding="utf-8") as f:
@@ -9,6 +10,7 @@ def open_json(way_to_open):
     except Exception as e:
         print(e)
         return []
+
 
 def currency_in_rub(transactions):
     amount = transactions.get("amount")

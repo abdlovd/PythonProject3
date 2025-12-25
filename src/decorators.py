@@ -20,6 +20,3 @@ def log(filename: None | str = None) -> Callable:
         return inner
 
     return wrapper
-
-
-
