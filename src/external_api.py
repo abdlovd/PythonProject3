@@ -12,5 +12,5 @@ def api_information(from_, amount):
 
     headers = {"apikey": os.getenv("API_KEY")}
 
-    response = requests.get(url, headers=headers, data={})
-    return response.json().get("result")
+    response = requests.get(url, headers=headers)
+    return float(response.json().get("result", 0))

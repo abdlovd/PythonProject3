@@ -12,15 +12,10 @@ def open_json(way_to_open):
         return []
 
 
-def currency_in_rub(transactions):
-    amount = transactions.get("amount")
-    currency = transactions.get("currency")
+def currency_in_rub(transactions: dict):
+    amount = transactions.get("operationAmount", {}).get("amount", "0")
+    currency = transactions.get("operationAmount", {}).get("currency", {}).get("code", "")
     if currency == "RUB":
-        return amount
-    elif "USD" in currency.value():
-        return amount
-    elif "EUR" in currency.value():
-        return api_information(currency, amount)
-    elif "EUR" in currency.value():
-        return api_information(currency, amount)
-    return transactions
+        return float(amount)
+    return api_information(currency, amount)
+
