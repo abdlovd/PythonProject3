@@ -1,6 +1,6 @@
-from src.utils import currency_in_rub
+from src.utils import currency_in_rub, open_json
 
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 
 
 def test_currency_in_rub():
@@ -33,3 +33,8 @@ def test_currency_in_rub():
     with patch("requests.get") as mock_get:
         mock_get.return_value.json.return_value = {'result': 245.0}
         assert currency_in_rub(transactions[1]) == 245.0
+
+def test_open_json():
+    with patch("builtins.open", mock_open(read_data='{"1":"2"}')):
+        assert open_json('{"1":"2"}') == {"1": "2"}
+    assert open_json(" ") == []

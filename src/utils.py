@@ -18,4 +18,3 @@ def currency_in_rub(transactions: dict):
     if currency == "RUB":
         return float(amount)
     return api_information(currency, amount)
-
