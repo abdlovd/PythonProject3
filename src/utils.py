@@ -1,6 +1,14 @@
 import json
-
+import logging
 from src.external_api import api_information
+
+
+logger = logging.getLogger('utils')
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler('logs/utils.log')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 def open_json(way_to_open):
@@ -8,6 +16,7 @@ def open_json(way_to_open):
         with open(way_to_open, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
+        logger.error(f'Произошла ошибка {e}')
         print(e)
         return []
 
