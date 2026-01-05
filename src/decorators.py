@@ -2,8 +2,8 @@ from typing import Any, Callable
 
 
 def log(filename: None | str = None) -> Callable:
-    def wrapper(func) -> Callable:
-        def inner(*args, **kwargs) -> Any:
+    def wrapper(func: Callable) -> Callable:
+        def inner(*args: tuple, **kwargs: dict) -> Any:
             try:
                 result = func(*args, **kwargs)
                 message = f"Функция выполнена успешно {func.__name__}, {result}"

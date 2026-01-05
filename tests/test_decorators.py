@@ -15,10 +15,7 @@ def test_plus(capsys):
 def test_exception(capsys):
     plus(1, "apple")
     captured = capsys.readouterr()
-    assert (
-        captured.out
-        == "Ошибка: unsupported operand type(s) for +: 'int' and 'str', plus. Аргументы: (1, 'apple') {}\n"
-    )
+    assert (captured.out == "Ошибка: unsupported operand type(s) for +: 'int' and 'str', plus. Аргументы: (1, 'apple') {}\n") # noqa
 
 
 @log("log.txt")
