@@ -12,6 +12,7 @@ logger.addHandler(file_handler)
 
 
 def open_json(way_to_open):
+    """Для обработки выбран JSON-файл"""
     try:
         with open(way_to_open, "r", encoding="utf-8") as f:
             logger.debug(f"Открыт файл по адресу {way_to_open}")
@@ -22,9 +23,11 @@ def open_json(way_to_open):
         return []
 
 
-def currency_in_rub(transactions: dict):
+def currency_in_rub(transactions: dict) -> list[dict]:
+    result = []
     amount = transactions.get("operationAmount", {}).get("amount", "0")
     currency = transactions.get("operationAmount", {}).get("currency", {}).get("code", "")
     if currency == "RUB":
-        return float(amount)
-    return api_information(currency, amount)
+        result.append(amount)
+        return result
+    return api_information(currency, result)

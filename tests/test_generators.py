@@ -1,7 +1,7 @@
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-def test_filter_by_currency(fixture_transactions: list)-> None:
+def test_filter_by_currency(fixture_transactions: list) -> None:
     assert list(filter_by_currency(fixture_transactions, "USD")) == [
         {
             "id": 939719570,
@@ -33,13 +33,13 @@ def test_filter_by_currency(fixture_transactions: list)-> None:
     ]
 
 
-def test_transaction_descriptions(fixture_transactions: list)-> None:
+def test_transaction_descriptions(fixture_transactions: list) -> None:
     descriptions = transaction_descriptions(fixture_transactions)
     assert next(descriptions) == "Перевод организации"
     assert next(descriptions) == "Перевод со счета на счет"
 
 
-def test_card_number_generator()-> None:
+def test_card_number_generator() -> None:
     gen = card_number_generator(1, 1)
     result = next(gen)
     assert result == "0000 0000 0000 0001"

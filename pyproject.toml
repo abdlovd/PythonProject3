@@ -33,7 +33,8 @@ lint = [
 ]
 dev = [
     "pytest (>=9.0.1,<10.0.0)",
-    "pytest-cov (>=7.0.0,<8.0.0)"
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)"
 ]
 
 [tool.black]
