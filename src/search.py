@@ -11,10 +11,14 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     return result
 
 
-def process_bank_category(data: list[dict], category: str) -> Counter[dict]:
+def process_bank_category(data: list[dict], list_category: list) -> dict:
+    """Функцию, которая будет принимать список словарей с
+    данными о банковских операциях и список категорий операций,
+    а возвращать словарь, в котором ключи — это названия категорий,
+    а значения — это количество операций в каждой категории."""
     description = []
     for i in data:
-        if i.get("description", "") in category:
-            description.append(i)
-    count_description = Counter(description)
-    return count_description
+        get_description = i.get("description", "")
+        if get_description in list_category:
+            description.append(get_description)
+    return dict(Counter(description))

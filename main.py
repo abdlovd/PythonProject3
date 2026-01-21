@@ -1,9 +1,8 @@
 import os
 from src.generators import filter_by_currency
-from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.search import process_bank_search
-from src.widget import get_date
+from src.widget import get_date, mask_account_card
 from src.utils import open_json
 from src.file_reader import csv_reader
 from src.file_reader import excel_reader
@@ -25,7 +24,6 @@ status = ["EXECUTED", "CANCELED", "PENDING"]
 
 def main():
     while True:
-        transactions = []
         print(
             "Привет!\n"
             "Добро пожаловать в программу работы с банковскими транзакциями.\n"
@@ -38,7 +36,6 @@ def main():
         get_func: Callable | None = dict_file.get(user_input)
         if get_func:
             print(get_func.__doc__)
-            get_func()
             path_: str = path_file.get(user_input)
             transactions: list = get_func(path_)
             break
@@ -74,23 +71,25 @@ def main():
         print("Введите слово для фильтрации: ")
         user_word: str = input()
         transactions = process_bank_search(transactions, user_word)
+    if not transactions:
+        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+    else:
+        print("Распечатываю итоговый список транзакций...")
+        print(f"Всего банковских операций в выборке: {len(transactions)}")
 
-    print("Распечатываю итоговый список транзакций...")
-    print(f"Всего банковских операций в выборке: {len(transactions)}")
+        for trans in transactions:
+            date = get_date(trans.get("date"))
+            amount = trans.get("amount", 0)
+            currency_name = trans.get("currency_name", 0)
+            to_from = trans.get("from") if isinstance(trans.get("from"), str) else None
+            to = mask_account_card(trans.get("to"))
+            description = trans.get("description")
 
-    for trans in transactions:
-        date = get_date(trans.get("date"))
-        amount = trans.get("amount")
-        currency_name = trans.get("currency_name")
-        to_from = trans.get("from") if isinstance(trans.get("from"), str) else None
-        to = get_mask_account(trans.get("to"))
-        description = trans.get("description")
-
-        date_description = f"{date} {description}"
-        check_to = f"{to}"
-        check_from = " -> " + get_mask_card_number(to_from) if to_from else ""
-        summ_print = f"Сумма: {amount} {currency_name}"
-        print(f"{date_description}\n{check_to}{check_from}\n{summ_print}")
+            date_description = f"{date} {description}"
+            check_to = f"{to}"
+            check_from = " -> " + mask_account_card(to_from) if to_from else ""
+            summ_print = f"Сумма: {amount} {currency_name}"
+            print(f"{date_description}\n{check_to}{check_from}\n{summ_print}")
 
 
 if __name__ == "__main__":

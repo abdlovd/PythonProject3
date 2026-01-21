@@ -4,8 +4,7 @@ from pandas import DataFrame
 
 def csv_reader(road_to_file: str) -> list:
     """Для обработки выбран CSV-файл"""
-
-    transactions = pd.read_csv(road_to_file)
+    transactions = pd.read_csv(road_to_file, delimiter=';')
     return transactions.to_dict("records")
 
 
