@@ -13,6 +13,7 @@ mypy = "^1.18.2"
 isort = "^7.0.0"
 black = "^25.11.0"
 pytest = "^9.0.1"
+python-dotenv = "^1.2.1"
 
 
 [build-system]
@@ -27,7 +28,8 @@ lint = [
     "isort (>=7.0.0,<8.0.0)"
 ]
 dev = [
-    "pytest (>=9.0.1,<10.0.0)"
+    "pytest (>=9.0.1,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
 ]
 
 [tool.black]
